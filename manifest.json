@@ -1,0 +1,40 @@
+{
+      "manifest_version": 2
+      
+    , "name": "Hide Unwanted Pins on Pinterest"
+    , "description": "This extension hides unwanted pins on Pinterest."
+    , "version": "0.0.1"
+    , "homepage_url": "http://potherca.github.io/Pinterest-HidePins/"
+    , "permissions": [
+          "*://*.pinterest.com/*"
+        , "*://pinterest.com/*"
+        , "storage"                     /* To save user's options */
+        , "webRequest"                  /* To add blinds to AJAX calls*/
+    ]
+
+    , "page_action": {
+        "default_icon": {
+              "19": "images/blinds-logo-19x19.png"
+            , "38": "images/blinds-logo-38x38.png"
+        }
+        , "default_title": "Hide Unwanted Pins on Pinterest - Click for options"    /* Show in tooltip */
+        , "default_popup": "Pinterest-HidePins-Options.html"
+    }
+
+    , "content_scripts": [{
+        "matches": [
+                "*://*.pinterest.com/*"
+              , "*://pinterest.com/*"
+        ]
+      , "css": ["PinterestHidePins.css"]
+      , "js": ["jquery-1.9.1.js", "PinterestHidePins.js"]
+    }]
+/*
+    , "background": {
+          "persistent": false
+        , "scripts": [
+              "ChromeExtension/eventPage.js"
+        ]
+  }
+*/
+}
