@@ -1,0 +1,23 @@
+.unwanted-pinterest-pin-hidden {
+    
+}
+
+.unwanted-pinterest-pin-hidden .unwanted-pin-hider:hover {
+    opacity: 0;
+}
+
+.unwanted-pinterest-pin-hidden .unwanted-pin-hider {
+    height: 100%;
+    background-color: rgba(238, 238, 238, 0.85);
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+
+    -webkit-transition: opacity 0.85s ease-in-out 0.5s;
+       -moz-transition: opacity 0.85s ease-in-out 0.5s;
+        -ms-transition: opacity 0.85s ease-in-out 0.5s;
+         -o-transition: opacity 0.85s ease-in-out 0.5s;
+            transition: opacity 0.85s ease-in-out 0.5s;
+}
+
