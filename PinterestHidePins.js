@@ -36,6 +36,7 @@
 
         function addStyles(){
             console.log('Style Added');
+        // @TODO: These should be replaced by a call including the CSS file (if it is not already present)
             var   sTransition = 'transition: opacity 0.85s ease-in-out 0.5s;'
                 , sStylesheet = ''
                     + '.unwanted-pinterest-pin-hidden {'
@@ -85,7 +86,8 @@
         }
 
         function hidePins(p_aSearchTerms){
-            var   $AllPins = $('.item').not('.unwanted-pinterest-pin-hidden');
+            console.log('HidePins Called');
+            var   $AllPins = $('.pin').not('.unwanted-pinterest-pin-hidden');
 
             $AllPins.each(function(){
                 var   $Pin = $(this)
@@ -116,10 +118,36 @@
             });
         }
 
-        // Make sure pins add through AJAX are also hidden
-        $(document.body).ajaxStop(function(){
-            hidePins(aSearchTerms);
-        });
+        console.log('-----------------------------------');
+        console.log(chrome);
+        console.log(chrome.webRequest);
+        console.log(chrome.extension);
+        console.log('-----------------------------------');
+
+        if(    typeof chrome !== 'undefined' 
+            && typeof chrome.extension !== 'undefined'
+            && typeof chrome.extension.onRequest !== 'undefined'
+        ){
+            console.log('-- Chrome Extension');
+            console.log(chrome.app.getDetails());
+            chrome.pageAction.show(chrome.runtime.id)
+
+            // CHROME
+            //chrome.webRequest.onCompleted
+            chrome.extension.onRequest.addListener(function(p_oDetails) {
+                console.log('AJAX CALL!!!');
+                console.log(p_oDetails);
+            });
+        }else if(false){
+            // FIREFOX
+            console.log('-- Firefox Addon');
+        } else {
+            // FAVELET: Make sure pins add through AJAX are also hidden
+            console.log('-- Favelet');
+            $(document.body).ajaxStop(function(){
+                hidePins(aSearchTerms);
+            });
+        }
 
         // Run!
         addStyles();
