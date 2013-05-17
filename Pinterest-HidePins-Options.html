@@ -6,19 +6,28 @@
 </head>
 
 <body>
-    <strong>
-        Blinds 
-        <span>
+    <i>
+        Blinds <br/>
+        <small>
             Hide unwanted Pins on Pinterest
-        </span>
-    </strong>
-    <h1>Options</h1>
-    <form>
-        <p>
+        </small>
+    </i>
+    
+    <h2>Options</h2>
+    
+    <div id="status"></div>
+    
+    <form id="Pinterest-HidePins-Options-Form">
+        <p id="input-container">
             Any pin containing one (or more) of the folowing words will be hidden:
+            <input type="text" name="word" />
         </p>
-        <input type="text" name="word"/>
-        <!-- @TODO: [automatically add a word once the field above receives a keyup] -->
+        <button type="button">+</button>
+
+        <button type="submit">Save Preferences</button>
     </form>
+
+    <script src="jquery-1.9.1.js"></script>
+    <script src="options.js"></script>
 </body>
 </html>
