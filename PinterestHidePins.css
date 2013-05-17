@@ -1,12 +1,12 @@
-.unwanted-pinterest-pin-hidden {
+.unwanted-pinterest-pin {
     
 }
 
-.unwanted-pinterest-pin-hidden .unwanted-pin-hider:hover {
+.unwanted-pinterest-pin .unwanted-pin-hider:hover {
     opacity: 0;
 }
 
-.unwanted-pinterest-pin-hidden .unwanted-pin-hider {
+.unwanted-pinterest-pin .unwanted-pin-hider {
     height: 100%;
     background-color: rgba(238, 238, 238, 0.85);
     position: absolute;
