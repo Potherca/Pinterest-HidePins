@@ -1,40 +1,54 @@
 {
       "manifest_version": 2
-      
+
     , "name": "Hide Unwanted Pins on Pinterest"
     , "description": "This extension hides unwanted pins on Pinterest."
-    , "version": "0.0.1"
     , "homepage_url": "http://potherca.github.io/Pinterest-HidePins/"
+    , "version": "0.0.1"
+
     , "permissions": [
           "*://*.pinterest.com/*"
         , "*://pinterest.com/*"
+        , "*://*.local/*"
         , "storage"                     /* To save user's options */
-        , "webRequest"                  /* To add blinds to AJAX calls*/
+        , "webRequest"                  /* To add Blinds to AJAX calls*/
+        , "tabs"
     ]
 
-    , "page_action": {
-        "default_icon": {
-              "19": "images/blinds-logo-19x19.png"
-            , "38": "images/blinds-logo-38x38.png"
-        }
-        , "default_title": "Hide Unwanted Pins on Pinterest - Click for options"    /* Show in tooltip */
-        , "default_popup": "Pinterest-HidePins-Options.html"
+    , "background" : {
+          "scripts": ["ChromeExtension/background.js"]
+/* 
+We can't make this an EventPage yet as webRequest is only allowed with 
+BackgroundPages and the alternative, declarativeWebRequest, are not yet available
+in the stable branch of Chrome.
+        , "persistent": false 
+*/
+    }
+    , "options_page": "Pinterest-HidePins-Options.html"
+
+    , "page_action" : {
+          "default_icon" : "images/blinds-logo-19x19-transparent.png"
+        , "default_title": "Hide Unwanted Pins on Pinterest -- Click for options"   /* Show in tooltip */
+        , "default_popup": "Pinterest-HidePins-Options.html"                        /* Shown on click  */
     }
 
-    , "content_scripts": [{
-        "matches": [
-                "*://*.pinterest.com/*"
-              , "*://pinterest.com/*"
+    , "content_scripts" : [{
+        "matches" : [
+              "*://*.pinterest.com/*"
+            , "*://pinterest.com/*"
+            , "*://*.local/*"
         ]
-      , "css": ["PinterestHidePins.css"]
-      , "js": ["jquery-1.9.1.js", "PinterestHidePins.js"]
+        , "js" : [
+              "jquery-1.9.1.js"
+            , "PinterestHidePins.js"
+        ]
+        , "css": ["PinterestHidePins.css"]
+        , "run_at" : "document_idle"
+        , "all_frames" : false
     }]
-/*
-    , "background": {
-          "persistent": false
-        , "scripts": [
-              "ChromeExtension/eventPage.js"
-        ]
-  }
-*/
+
+    , "icons" : {
+          "48" : "images/blinds-logo-48x48-transparent.png"
+        , "128" : "images/blinds-logo-128x128-transparent.png"
+    }
 }
