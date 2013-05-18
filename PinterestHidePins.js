@@ -1,5 +1,5 @@
 ;(function(){
-    console.log('Script Loaded');
+    console.log('BlindsForPinterest -- Script Loaded');
 
     var aSearchTerms = [];
 
@@ -21,7 +21,7 @@
     
     function jQueryLoader(p_oCallback) {
         if (window.jQuery) {
-            console.log('jQuery Loaded');
+            console.log('BlindsForPinterest -- jQuery Loaded');
             p_oCallback(jQuery);
         } else {
             window.setTimeout(
@@ -32,11 +32,11 @@
     };
 
     function init($) {
-        console.log('Init Called');
-        var $Candidates;
+        console.log('BlindsForPinterest -- Init Called');
+        var iTotalCandidates = 0;
 
         function addStyles(){
-            console.log('Style Added');
+            console.log('BlindsForPinterest -- Style Added');
         // @TODO: These should be replaced by a call including the CSS file (if it is not already present)
             var   sTransition = 'transition: opacity 0.85s ease-in-out 0.5s;'
                 , sStylesheet = ''
@@ -65,14 +65,6 @@
             $('head').append('<style>'+sStylesheet+'</style>');
         }
 
-        function addCandidate(p_$Pin) {
-            if (typeof $Candidates === 'undefined') {
-                $Candidates = p_$Pin;
-            } else {
-                $Candidates.add(p_$Pin);
-            }
-        }
-
         function decorateCandidate(p_$Pin, p_sWord, p_sColor) {
             var $Hider = $('<div class="unwanted-pin-hider">' + p_sWord + '</div>');
 
@@ -87,11 +79,15 @@
         }
 
         function hidePins(p_aSearchTerms){
-            console.log('HidePins Called');
+            var   $AllPins
+                , iCandidates = 0
+            ;
+
+            console.log('BlindsForPinterest -- HidePins Called, searchterms: ' + JSON.stringify(p_aSearchTerms));
 
             p_aSearchTerms = p_aSearchTerms || [];
 
-            var   $AllPins = $('.pin, .Pin').not('unwanted-pinterest-pin');
+            $AllPins = $('.pin, .Pin').not('.unwanted-pinterest-pin');
 
             $AllPins.each(function(){
                 var   $Pin = $(this)
@@ -100,49 +96,60 @@
 
                 // Check pin's TEXT first
                 $.each(p_aSearchTerms, function(p_i, p_sWord){
-                    var sWord = p_sWord.toLowerCase();
+                    if(p_sWord !== ''){
+                        var sWord = p_sWord.toLowerCase();
 
-                    if(sText.indexOf(sWord) > -1 && $Pin.hasClass('unwanted-pinterest-pin') === false){
-                        addCandidate($Pin);
-                        decorateCandidate($Pin, p_sWord);
-                        return false;
+                        if(sText.indexOf(sWord) > -1 && $Pin.hasClass('unwanted-pinterest-pin') === false){
+                            iCandidates++;
+                            decorateCandidate($Pin, p_sWord);
+                            return false;
+                        }
                     }
                 });
 
                 // Check a pins LINK as a fallback
                 $.each(p_aSearchTerms, function(p_i, p_sWord){
-                    var sWord = p_sWord.toLowerCase();
-                    
-                    if($Pin.find('a.attributionItem[href*="' + sWord + '"]').length > 0  && $Pin.hasClass('unwanted-pinterest-pin') === false){
-                        addCandidate($Pin);
-                        decorateCandidate($Pin, p_sWord);
-                        return false;
+                    if(p_sWord !== ''){
+                        var sWord = p_sWord.toLowerCase();
+
+                        if($Pin.find('a.attributionItem[href*="' + sWord + '"]').length > 0  && $Pin.hasClass('unwanted-pinterest-pin') === false){
+                            iCandidates++;
+                            decorateCandidate($Pin, p_sWord);
+                            return false;
+                        }
                     }
                 });
             });
+
+            iTotalCandidates += iCandidates;
+
+            console.log('BlindsForPinterest -- HidePins -- Pins Found: ' + $AllPins.length + ', Pins Hidden: ' + iCandidates + ', Total Hidden: ' + iTotalCandidates);
+
         }
 
         // Run!
         if(    typeof chrome !== 'undefined' 
             && typeof chrome.extension !== 'undefined'
         ){
-            console.log('-- Chrome Extension');    
+            console.log('BlindsForPinterest -- Init -- Chrome Extension');
             // Tell the Chrome Extension we are here
             chrome.extension.sendRequest({}, function(p_oResponse) {
                 aSearchTerms = p_oResponse.aSearchTerms || [];
                 hidePins(aSearchTerms);
             });
         }else if(false){
-            console.log('-- Firefox Addon');
+            console.log('BlindsForPinterest -- Init -- Firefox Addon');
         } else {
-            console.log('-- Favelet');
-			addStyles();
+            console.log('BlindsForPinterest -- Init -- Favelet');
+            addStyles();
             // Make sure pins added through AJAX are also hidden
             $(document.body).ajaxStop(function(){
                 hidePins(aSearchTerms);
             });
             hidePins(aSearchTerms);
         }
+
+        window.hidePins = hidePins;
     }
 
     jQueryLoader(init);
