@@ -1,15 +1,18 @@
-// Saves options to localStorage.
+var   $FirstInput = $('input[name="word"]:first')
+    , $Container = $('#input-container')
+;
+
 function saveOptions(p_oEvent) {
 
     var   aSearchTerms = []
-        , $Input = $('input[name="word"]')
+        , $AllInputs = $('input[name="word"]')
         , $Status = $('#status')
     ;
 
     p_oEvent.preventDefault();
 
-    $Input.each(function(p_i, p_oInput){
-        var sWord = $(p_oInput).val();
+    $AllInputs.each(function(p_i, p_oInput){
+        var sWord = $(p_oInput).val().trim();
 
         if(sWord !== '' && aSearchTerms.indexOf(sWord) === -1){
             aSearchTerms.push($(p_oInput).val());
@@ -18,47 +21,52 @@ function saveOptions(p_oEvent) {
 
     localStorage['Pinterest-HidePins'] = JSON.stringify(aSearchTerms);
 
+    restoreOptions(aSearchTerms, true);
+
     $Status.removeClass('hidden').addClass('success show-me').html('Options Saved.');
 
     setTimeout(function() {
         $Status.removeClass('success show-me').addClass('hidden');
         }, 3750
     );
+
     setTimeout(function() {
         $Status.html('&nbsp;');
         }, 4300
     );
 }
 
-function restoreOptions() {
-    var aSearchTerms = JSON.parse(localStorage['Pinterest-HidePins'] || '[]');
+function addInput(p_sWord){
+    var $NewInput = $FirstInput.clone();
 
-    var   $Input = $('input[name="word"]')
-        , $Container = $('#input-container')
-    ;
+    $NewInput.val(p_sWord);
+    $FirstInput.val('');
 
-    function addInput(p_sWord){
-        var $NewInput = $Input.clone();
+    $Container.append($NewInput);
+    $Container.append($FirstInput);
 
-        $NewInput.val(p_sWord);
-        $Input.val('');
+    $FirstInput.focus();
+}
 
-        $Container.append($NewInput);
-        $Container.append($Input);
-        $Input.focus();
+function restoreOptions(p_aSearchTerms, p_bReset) {
+    var aSearchTerms = p_aSearchTerms || JSON.parse(localStorage['Pinterest-HidePins'] || '[]');
+
+    if(p_bReset === true){
+        $Container.find('input').remove().append($FirstInput);
     }
 
     $.each(aSearchTerms, function(p_sIndex, p_sWord){
         addInput(p_sWord)
     });
-
-
-    $('button[type="button"]').on('click', function(){
-        addInput($Input.val())
-    });
 }
 
 $('#Pinterest-HidePins-Options-Form').on('submit', saveOptions);
-$(restoreOptions);
+
+restoreOptions();
+
+$('button[type="button"]').on('click', function(){
+    addInput($FirstInput.val())
+});
+
 
 //EOF
