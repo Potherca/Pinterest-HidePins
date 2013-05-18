@@ -21,3 +21,19 @@
             transition: opacity 0.85s ease-in-out 0.5s;
 }
 
+.unwanted-pinterest-pin .unwanted-pin-hider span {
+    color: rgba(255, 255, 255, 0.65);
+    display: block;
+    text-align: center;
+    top: 48%;
+    position: relative;
+    background-color: rgba(204, 204, 200, 0.15);
+    border: 0.1em solid rgba(100, 100, 100, 0.1);
+    border-radius: 1em;
+    margin: 2em;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+/* EOF */
+

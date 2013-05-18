@@ -66,7 +66,7 @@
         }
 
         function decorateCandidate(p_$Pin, p_sWord, p_sColor) {
-            var $Hider = $('<div class="unwanted-pin-hider">' + p_sWord + '</div>');
+            var $Hider = $('<div class="unwanted-pin-hider"><span>' + p_sWord + '</span></div>');
 
             $Hider.click(function(){
                 $Hider.remove();
