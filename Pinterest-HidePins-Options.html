@@ -3,20 +3,74 @@
 <head>
     <meta charset="utf-8" />
     <title>Blinds - Hide unwanted Pinterest Pins - Options</title>
+    <link rel="stylesheet" href="ChromeBootstrap/chrome-bootstrap.css" />
+    <style>
+        body {
+            margin: 0.5em;
+            width: 24em;
+            --position: absolute;
+            --left: 50%;
+            --margin: 0 -10em;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 0.35em;
+        }
+
+        h1 small {
+            font-size: 65%;
+            display: block;
+        }
+
+        #input-container input {
+            margin: 0.35em auto;
+            display: block;
+        }
+
+        .hidden {
+            opacity: 0;
+            -webkit-transition: all 0.85s ease-in-out 0.5s;
+                    transition: all 0.85s ease-in-out 0.5s;
+        }
+
+        .show-me {
+            opacity: 1;
+            -webkit-transition: all 0.85s ease-in-out 0.5s;
+                    transition: all 0.85s ease-in-out 0.5s;
+        }
+
+        #status {
+            text-align: center;
+            color: white;
+            margin: 1.2em 0 -1.2em;
+            padding: 0.35em;
+            border-radius: 0.35em;
+            background-color: orange;
+        }
+
+        #status.success{
+            background-color: rgb(65, 180, 65);
+        }
+
+        #status.error{
+            background-color: rgb(180, 65, 65);
+        }
+    </style>
 </head>
 
 <body>
-    <i>
-        Blinds <br/>
+    <h1>
+        Blinds 
         <small>
             Hide unwanted Pins on Pinterest
         </small>
-    </i>
-    
+    </h1>
+
+    <div id="status" class="hidden">&nbsp;</div>
+
     <h2>Options</h2>
-    
-    <div id="status"></div>
-    
+
     <form id="Pinterest-HidePins-Options-Form">
         <p id="input-container">
             Any pin containing one (or more) of the folowing words will be hidden:

@@ -1,10 +1,12 @@
 // Saves options to localStorage.
-function saveOptions() {
+function saveOptions(p_oEvent) {
 
     var   aSearchTerms = []
         , $Input = $('input[name="word"]')
         , $Status = $('#status')
     ;
+
+    p_oEvent.preventDefault();
 
     $Input.each(function(p_i, p_oInput){
         var sWord = $(p_oInput).val();
@@ -16,9 +18,16 @@ function saveOptions() {
 
     localStorage['Pinterest-HidePins'] = JSON.stringify(aSearchTerms);
 
-    $Status.html('Options Saved.').addClass('hide-me');
+    $Status.removeClass('hidden').addClass('success show-me').html('Options Saved.');
 
-    //alert('wait');// uncomment to see console logs.
+    setTimeout(function() {
+        $Status.removeClass('success show-me').addClass('hidden');
+        }, 3750
+    );
+    setTimeout(function() {
+        $Status.html('&nbsp;');
+        }, 4300
+    );
 }
 
 function restoreOptions() {
@@ -36,6 +45,7 @@ function restoreOptions() {
 
         $Container.append($NewInput);
         $Container.append($Input);
+        $Input.focus();
     }
 
     $.each(aSearchTerms, function(p_sIndex, p_sWord){
