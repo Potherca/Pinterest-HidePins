@@ -4,6 +4,10 @@
     var aSearchTerms = [];
 
     /* Make sure we've got jQuery */
+    // @TODO: The jQuery loader can be removed as jQuery will always be available
+    //        For browser extension we load it ourselves and on Pinterest it is
+    //        Already available, otherwise our hijacking the AJAX postSend would
+    //        never work...
     if(typeof jQuery === 'undefined'){
         var oScriptNode, oPage;
 
@@ -36,33 +40,18 @@
         var iTotalCandidates = 0;
 
         function addStyles(){
-            console.log('BlindsForPinterest -- Style Added');
-        // @TODO: These should be replaced by a call including the CSS file (if it is not already present)
-            var   sTransition = 'transition: opacity 0.85s ease-in-out 0.5s;'
-                , sStylesheet = ''
-                    + '.unwanted-pinterest-pin {'
-                    + '    '
-                    + '}'
-                    + '.unwanted-pinterest-pin .unwanted-pin-hider:hover {'
-                    + '    opacity: 0;'
-                    + '}'
-                    + '.unwanted-pinterest-pin .unwanted-pin-hider {'
-                    + '    height: 100%;'
-                    + '    background-color: rgba(238, 238, 238, 0.85);'
-                    + '    position: absolute;'
-                    + '    top: 0;'
-                    + '    width: 100%;'
-                    + '    z-index: 1;'
-                    + ''
-                    + '    -webkit-' + sTransition
-                    + '       -moz-' + sTransition
-                    + '        -ms-' + sTransition
-                    + '         -o-' + sTransition
-                    + '            ' + sTransition
-                    + '}'
+            console.log('BlindsForPinterest -- addStyles called');
+            var oStyleLink, oPage;
+
+            oStyleLink = document.createElement('link');
+            oStyleLink.rel = 'stylesheet';
+            oStyleLink.type = 'text/css';
+            oStyleLink.href = 'http://potherca.github.com/Pinterest-HidePins/Generic/PinterestHidePins.css';
+            oPage = document.getElementsByTagName('head')[0]
+                || document.getElementsByTagName('body')[0]
             ;
 
-            $('head').append('<style>'+sStylesheet+'</style>');
+            oPage.appendChild(oStyleLink);
         }
 
         function decorateCandidate(p_$Pin, p_sWord, p_sColor) {
@@ -141,11 +130,28 @@
             console.log('BlindsForPinterest -- Init -- Firefox Addon');
         } else {
             console.log('BlindsForPinterest -- Init -- Favelet');
+
+            var $Body, sSearchTerms;
+            
+            $Body = $(document.body);
+            
+            sSearchTerms = $('script[src*="/PinterestHidePins.js"]').attr('data-aSearchTerms') || alert('Could not find any words to hide Pins for!');
+            aSearchTerms = JSON.parse(sSearchTerms || '[]');
+
             addStyles();
+            
             // Make sure pins added through AJAX are also hidden
-            $(document.body).ajaxStop(function(){
+            $Body.ajaxStop(function(){
                 hidePins(aSearchTerms);
             });
+            // Add PAge Branding
+            $Body.append(
+                  '<a href="http://potherca.github.io/Pinterest-HidePins/"' 
+                + ' class="PinterestHidePins-PageBrand"'
+                + ' title="Blinds - Hide Unwanted Pinterest Pins - Click to Visit Homepage"'
+                + '></a>'
+            );
+            
             hidePins(aSearchTerms);
         }
 
