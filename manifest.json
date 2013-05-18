@@ -9,7 +9,7 @@
     , "permissions": [
           "*://*.pinterest.com/*"
         , "*://pinterest.com/*"
-        , "*://*.local/*"
+        , "*://*.local/*Pinterest*"
         , "storage"                     /* To save user's options */
         , "webRequest"                  /* To add Blinds to AJAX calls*/
         , "tabs"
@@ -24,31 +24,31 @@ in the stable branch of Chrome.
         , "persistent": false 
 */
     }
-    , "options_page": "Pinterest-HidePins-Options.html"
+    , "options_page": "Generic/Options/Pinterest-HidePins-Options.html"
 
     , "page_action" : {
-          "default_icon" : "images/blinds-logo-19x19-transparent.png"
+          "default_icon" : "Generic/Images/blinds-logo-19x19-transparent.png"
         , "default_title": "Hide Unwanted Pins on Pinterest -- Click for options"   /* Show in tooltip */
-        , "default_popup": "Pinterest-HidePins-Options.html"                        /* Shown on click  */
+        , "default_popup": "Generic/Options/Pinterest-HidePins-Options.html"         /* Shown on click  */
     }
 
     , "content_scripts" : [{
         "matches" : [
               "*://*.pinterest.com/*"
             , "*://pinterest.com/*"
-            , "*://*.local/*"
+            , "*://*.local/*Pinterest*"
         ]
         , "js" : [
-              "jquery-1.9.1.js"
-            , "PinterestHidePins.js"
+              "Generic/jquery-1.9.1.js"
+            , "Generic/PinterestHidePins.js"
         ]
-        , "css": ["PinterestHidePins.css"]
+        , "css": ["Generic/PinterestHidePins.css"]
         , "run_at" : "document_idle"
         , "all_frames" : false
     }]
 
     , "icons" : {
-          "48" : "images/blinds-logo-48x48-transparent.png"
-        , "128" : "images/blinds-logo-128x128-transparent.png"
+          "48" : "Generic/Images/blinds-logo-48x48-transparent.png"
+        , "128" : "Generic/Images/blinds-logo-128x128-transparent.png"
     }
 }
