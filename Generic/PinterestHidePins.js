@@ -46,7 +46,7 @@
             oStyleLink = document.createElement('link');
             oStyleLink.rel = 'stylesheet';
             oStyleLink.type = 'text/css';
-            oStyleLink.href = 'http://potherca.github.com/Pinterest-HidePins/Generic/PinterestHidePins.css';
+            oStyleLink.href = 'http://potherca.github.io/Pinterest-HidePins/Generic/PinterestHidePins.css';
             oPage = document.getElementsByTagName('head')[0]
                 || document.getElementsByTagName('body')[0]
             ;
