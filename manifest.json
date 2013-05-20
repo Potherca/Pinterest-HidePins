@@ -1,18 +1,18 @@
 {
       "manifest_version": 2
 
-    , "name": "Hide Unwanted Pins on Pinterest"
-    , "description": "This extension hides unwanted pins on Pinterest."
+    , "name": "Blinds -- Hide Unwanted Pins on Pinterest"
+    , "description": "This extension hides unwanted pins on Pinterest based on the words you provide it with."
     , "homepage_url": "http://potherca.github.io/Pinterest-HidePins/"
-    , "version": "0.0.1"
+    , "version": "0.0.0.1"
 
     , "permissions": [
           "*://*.pinterest.com/*"
         , "*://pinterest.com/*"
-        , "*://*.local/*Pinterest*"
+        //, "*://*.local/*Pinterest*"
         , "storage"                     /* To save user's options */
         , "webRequest"                  /* To add Blinds to AJAX calls*/
-        , "tabs"
+        , "tabs" /* @TODO: We need to get rid of this permission! */
     ]
 
     , "background" : {
@@ -28,7 +28,7 @@ in the stable branch of Chrome.
 
     , "page_action" : {
           "default_icon" : "Generic/Images/blinds-logo-19x19-transparent.png"
-        , "default_title": "Hide Unwanted Pins on Pinterest -- Click for options"   /* Show in tooltip */
+        , "default_title": "Blinds -- Hide Unwanted Pins on Pinterest -- Click for options"   /* Show in tooltip */
         , "default_popup": "Generic/Options/Pinterest-HidePins-Options.html"         /* Shown on click  */
     }
 
@@ -36,7 +36,7 @@ in the stable branch of Chrome.
         "matches" : [
               "*://*.pinterest.com/*"
             , "*://pinterest.com/*"
-            , "*://*.local/*Pinterest*"
+            //, "*://*.local/*Pinterest*"
         ]
         , "js" : [
               "Generic/jquery-1.9.1.js"

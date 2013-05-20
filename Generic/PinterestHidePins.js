@@ -148,7 +148,7 @@
             $Body.append(
                   '<a href="http://potherca.github.io/Pinterest-HidePins/"' 
                 + ' class="PinterestHidePins-PageBrand"'
-                + ' title="Blinds - Hide Unwanted Pinterest Pins - Click to Visit Homepage"'
+                + ' title="Blinds -- Hide Unwanted Pins on Pinterest -- Click to Visit Homepage"'
                 + '></a>'
             );
             
