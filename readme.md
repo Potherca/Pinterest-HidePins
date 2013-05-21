@@ -16,6 +16,7 @@ or more words provided by a user.
 ## Where to get it?
 
 Grab [the browser extension for Chrome][blinds-google-webstore].
+
 <!-- 
 and [a bookmarlet][blinds-favelet] to support other browsers.
 For install instructions please [visit the install page][blinds-install].
@@ -34,13 +35,17 @@ please [visit the issues page][blinds-issues].
 If you enjoy using Blinds, feel free to [make a donation][blinds-donations]. 
 I am grateful for every penny I receive.
 -->
-[blinds-favelet]: http://potherca.github.io/Pinterest-HidePins/Favelet/
-[blinds-google-webstore]: https://chrome.google.com/webstore/detail/blinds-hide-unwanted-pins/inffdichdndldfodhcflilkpdnpgcaio
-[blinds-install]: http://potherca.github.io/Pinterest-HidePins/Pages/Install/
+
 [blinds-issues]: https://github.com/potherca/Pinterest-HidePins/issues?milestone=
+[pinterest]: http://pinterest.com
+[blinds-google-webstore]: https://chrome.google.com/webstore/detail/blinds-hide-unwanted-pins/inffdichdndldfodhcflilkpdnpgcaio
+
+<!--
+[blinds-favelet]: http://potherca.github.io/Pinterest-HidePins/Favelet/
+[blinds-install]: http://potherca.github.io/Pinterest-HidePins/Pages/Install/
 [blinds-donations]: http://potherca.github.io/Pinterest-HidePins/Pages/donations/
 [blinds-support]: http://potherca.github.io/Pinterest-HidePins/Pages/Support/
 [blinds-milestones]: https://github.com/potherca/Pinterest-HidePins/issues/milestones
-[pinterest]: http://pinterest.com
+-->
 
 <!-- EOF -->
