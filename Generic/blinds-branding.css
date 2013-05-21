@@ -15,6 +15,7 @@
 
 .blinds-container:hover {
     box-shadow: 0 0 0.1em black, 0 0 0.85em cyan;
+    background-color: rgba(255, 255, 255, 0.85);
 }
 
 .blinds-title {
@@ -29,7 +30,7 @@
     border-radius: 1em;
 
     background-color: rgba(255,255,255, 1);
-    background-image: url(../Generic/Images/blinds-logo-400x400-transparent.png);
+    background-image: url(../Generic/Images/WebstoreImages/icon_128.png);
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -59,6 +60,7 @@
     border: none;
     margin-left: 0.35em;
     margin-right: 0.35em;
+    background-color: transparent;
 }
 
 
@@ -72,6 +74,9 @@
     font-size: 100%;
     font-family: Lobster;
     font-weight: normal;
+
+    white-space: nowrap;
+    text-shadow: 0 0 0.1em white, 0 0 0.2em white,0 0 0.3em white,0 0 0.4em white;
 }
 
 /* Improve and reset some values for nested rendition */
@@ -86,7 +91,6 @@
     border-radius: initial;
     letter-spacing: initial;
     line-height: initial;
-    text-shadow: initial;
 }
 
 /* An alternative styling */
@@ -112,7 +116,7 @@
 
 .pretty-blinds.blinds-subtitle,
 .pretty-blinds .blinds-subtitle {
-    text-shadow: 0 0 0.2em cyan;
+    text-shadow: 0 0 0.2em cyan, 0 0 0.2em cyan, 0 0 0.1em cyan;
 }
 
 /*EOF*/
