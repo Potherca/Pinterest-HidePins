@@ -31,6 +31,8 @@ other browsers all are planned for the near future. To follow the progress
 To get support, ask for a feature to be added or altered, or report issues, 
 please [visit the issues page][blinds-issues]. 
 
+This code is licensed under the [GNU General Public License Version 3 (GPL3)][GPL3]
+
 <!--
 If you enjoy using Blinds, feel free to [make a donation][blinds-donations]. 
 I am grateful for every penny I receive.
@@ -39,6 +41,7 @@ I am grateful for every penny I receive.
 [blinds-issues]: https://github.com/potherca/Pinterest-HidePins/issues?milestone=
 [pinterest]: http://pinterest.com
 [blinds-google-webstore]: https://chrome.google.com/webstore/detail/blinds-hide-unwanted-pins/inffdichdndldfodhcflilkpdnpgcaio
+[GPL3]: http://www.gnu.org/licenses/gpl.html
 
 <!--
 [blinds-favelet]: http://potherca.github.io/Pinterest-HidePins/Favelet/
