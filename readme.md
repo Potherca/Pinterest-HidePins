@@ -28,9 +28,10 @@ Improvements, new features and a Firefox extension and a bookmarlet to support
 other browsers all are planned for the near future. To follow the progress 
 [visit the milestone page][blinds-milestones].
 
+<!--
 To get support, ask for a feature to be added or altered, or report issues, 
 please [visit the issues page][blinds-issues]. 
-
+-->
 This code is licensed under the [GNU General Public License Version 3 (GPL3)][GPL3]
 
 <!--
